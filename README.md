@@ -2,7 +2,7 @@
 
 This is a state of development, that is common for majority of RoR backend APIs.
 
-**It has the following suggestions about project technologies: **
+**It has the following suggestions about project technologies:**
 
 * Ruby version 2.3.1
 * Rails version 5.0.1
@@ -15,7 +15,7 @@ This is a state of development, that is common for majority of RoR backend APIs.
 * Pagination is implemented using will_paginate
 * Attachment uploading is implemented via Carrierwave.
 
-** The following features are pre-implemented: **
+**The following features are pre-implemented:**
 * User sign in/sign up/reset password
 * Admin sign in/sign up/user management
 * Admin panel is supposed as detached SPA
@@ -25,15 +25,15 @@ This is a state of development, that is common for majority of RoR backend APIs.
 
 ## Installation ##
 
-1) *clone* this repo
-2) *cd*
-3) ./install.sh
-4) Answer questions
-5) ?????
-6) Save a couple of days of development
+1. *clone* this repo
+2. *cd*
+3. ./install.sh
+4. Answer questions
+5. ?????
+6. Save a couple of days of development
 
 ## Possible improvements: ##
-1) Implement multiple-token auth
-2) Use Capistrano template engine without bugs
+1. Implement multiple-token auth
+2. Use Capistrano template engine without bugs
 
 Feel free to send pull request on any other reason.
