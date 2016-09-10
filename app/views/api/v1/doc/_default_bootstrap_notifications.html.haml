@@ -1,0 +1,29 @@
+- unless flash.blank?
+  - flash.each do |e, msg|
+    - if msg.class == String
+      .alert.alert-dismissible{role: 'alert', class: resolve_alert_class_from_flash(e)}
+        %button{type: 'button', class: 'close', 'data-dismiss' => 'alert', 'aria-label' => 'Close'}
+          %span{'aria-hidden' => 'true'}
+            &times;
+        %span.glyphicon.glyphicon-exclamation-sign{'aria-hidden' => 'true'}
+        %span.sr-only Error:
+        = msg
+    - else
+      - msg.each do |msgg|
+        .alert.alert-dismissible{role: 'alert', class: resolve_alert_class_from_flash(e)}
+          %button{type: 'button', class: 'close', 'data-dismiss' => 'alert', 'aria-label' => 'Close'}
+            %span{'aria-hidden' => 'true'}
+              &times;
+          %span.glyphicon.glyphicon-exclamation-sign{'aria-hidden' => 'true'}
+          %span.sr-only Error:
+          = msgg
+- unless @errors.blank?
+  - @errors.each do |k, v|
+    - v.each do |msg|
+      .alert.alert-dismissible{role: 'alert', class: 'alert-danger'}
+        %button{type: 'button', class: 'close', 'data-dismiss' => 'alert', 'aria-label' => 'Close'}
+          %span{'aria-hidden' => 'true'}
+            &times;
+        %span.glyphicon.glyphicon-exclamation-sign{'aria-hidden' => 'true'}
+        %span.sr-only Error:
+        = msg

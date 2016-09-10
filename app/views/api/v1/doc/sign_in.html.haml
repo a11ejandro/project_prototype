@@ -1,0 +1,24 @@
+.login_page_bg
+  .login_container
+    .login_logo
+      // Insert logo here
+      = image_tag 'LogoTagline.png'
+    .login_form
+      = form_for(User.new, url: new_session_api_v1_doc_index_path, method: :post) do |f|
+        .login_header
+          Login
+        = render 'api/v1/doc/default_bootstrap_notifications', locals: {flash: flash}
+
+        .input-group{style: 'margin-bottom: 8px;'}
+          %span.input-group-addon#email_field
+            %span.glyphicon.glyphicon-envelope
+          = f.email_field :email, class: 'form-control', placeholder: 'Email', 'aria-describedby' => 'email_field'
+        .input-group{style: 'margin-bottom: 16px;'}
+          %span.input-group-addon#password_field
+            %span.glyphicon.glyphicon-asterisk
+          = f.password_field :password, class: 'form-control', placeholder: 'Password', 'aria-describedby' => 'password_field'
+        = check_box_tag 'user[remember]', params[:remember], true, style: 'margin-bottom: 32px;'
+        %label{for: :remember_me, style: 'font-weight: normal;'}
+          Remember me
+        %button.btn.btn-default#login_button{type: 'submit'}
+          Login

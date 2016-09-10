@@ -1,0 +1,48 @@
+$nav-gray-text: rgb(137, 137, 137);
+$base-bg-color: rgb(0, 0, 0);
+$nav-bg-color: $base-bg-color;
+$admin-panel-bg-color: rgb(245, 245, 246);
+
+$admin-login-bg-color: rgb(244, 244, 244);
+
+$base-tpl-red: rgb(202, 92, 66);
+
+$base-tpl-green: rgb(92, 184, 92);
+$base-tpl-green-border: rgb(75, 179, 75);
+
+$base-tpl-blue: rgb(85, 137, 197);
+$base-tpl-blue-border: rgb(59, 123, 192);
+
+$modal-btn-primary-color: $base-tpl-green;
+$modal-btn-primary-border-color: $base-tpl-green-border;
+
+$tpl-label-green: rgb(115, 181, 102);
+$tpl-label-blue: $base-tpl-blue;
+$tpl-label-orange: rgb(233,169,69);
+$tpl-label-red: rgb(156,56,54);
+$tpl-label-soft-gray: rgb(205,204,206);
+$tpl-label-hard-gray: rgb(155,155,155);
+$tpl-label-soft-purple: #a28dce;
+$tpl-label-ocean: #04ccce;
+$tpl-label-hard-orange: #ce6f04;
+$tpl-label-soft-green: #adcec4;
+$tpl-label-dirty-red: #b77c77;
+
+@mixin gradient($deg, $from_color, $to_color) {
+  background: -webkit-linear-gradient($deg ,$from_color, $to_color);
+  background: -o-linear-gradient($deg ,$from_color, $to_color);
+  background: -moz-linear-gradient($deg ,$from_color, $to_color);
+  background: linear-gradient($deg ,$from_color, $to_color);
+}
+
+@mixin transform_mixin($arg1, $arg2){
+  -webkit-transform: translate($arg1, $arg2);
+  -moz-transform: translate($arg1, $arg2);
+  transform: translate($arg1, $arg2);
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
