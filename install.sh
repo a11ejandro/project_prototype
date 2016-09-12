@@ -7,7 +7,7 @@ read PROJECT_NAME
 echo -n "What is the name of a project in snake_case? "
 read PROJECT_NAME_SNAKE
 
-MODULE_NAME="$PROJECT_NAME_SNAKE" | sed -r 's/(^|_)([a-z])/\U\2/g'
+MODULE_NAME=$(echo $VARIABLE_1 | sed -r 's/(^|_)([a-z])/\U\2/g')
 
 echo -n "What is the ip address of develop server? "
 read DEVELOP_ADDRESS
