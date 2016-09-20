@@ -29,8 +29,8 @@ This is a state of development, that is common for majority of RoR backend APIs.
 2. *cd*
 3. ./install.sh
 4. Answer questions
-5. ?????
-6. Save a couple of days of development
+5. Fill in database.yml and secrets.yml with sensitivity data. Secrets should include *current_base_url* to make swagger
+work properly.
 
 ## Possible improvements: ##
 1. Implement multiple-token auth
