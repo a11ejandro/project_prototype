@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20160825173838) do
     t.string   "role",                            default: "user"
     t.string   "avatar"
     t.string   "state"
-    t.string   "rest_token",                      default: "e9329867-9b8a-4131-8dd2-d30b382b6764"
+    t.string   "rest_token",                      default: "45d183a7-6425-466c-bc43-ff90a075b102"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree

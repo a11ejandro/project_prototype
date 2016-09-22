@@ -25,8 +25,12 @@ class Api::V1::Admin::UsersController < Api::V1::Admin::BaseController
   end
 
   def destroy
-    @current_user.destroy
-    render_success(200, true)
+    if @current_user.id == @authenticated_admin.id
+      render_fail(403, 'Forbidden to delete own account')
+    else
+      @current_user.destroy
+      render_success(200, true)
+    end
   end
 
   def index
