@@ -8,6 +8,6 @@ json.result do
 
   json.pagination do
     json.page @page
-    json.total_pages @total_pages
+    json.totalPages @total_pages
   end
 end
