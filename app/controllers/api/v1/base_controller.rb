@@ -2,6 +2,7 @@ class Api::V1::BaseController < ActionController::API
   Swagger::Docs::Generator::set_real_methods
   include Sorcery::Controller
 
+
   def render_fail(status_code = 400, description = nil)
     render template: 'common/error', locals: {status: status_code, result: description}
   end
@@ -19,4 +20,5 @@ class Api::V1::BaseController < ActionController::API
   # Compatibility with Sorcery
   def form_authenticity_token
   end
+
 end

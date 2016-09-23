@@ -53,3 +53,6 @@ git init
 git add --all
 git commit -m 'Initial commit - project initialized from project_prototype'
 git remote add origin "$REPO_URL"
+
+# 6. Generate documentation
+rails swagger:docs

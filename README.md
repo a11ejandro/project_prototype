@@ -14,7 +14,7 @@ This is a state of development, that is common for majority of RoR backend APIs.
 * Basic filtering is implemented via scoped_search
 * Pagination is implemented using will_paginate
 * Attachment uploading is implemented via Carrierwave.
-
+]
 **The following features are pre-implemented:**
 * User sign in/sign up/reset password
 * Admin sign in/sign up/user management
@@ -31,6 +31,7 @@ This is a state of development, that is common for majority of RoR backend APIs.
 4. Answer questions
 5. Fill in database.yml and secrets.yml with sensitivity data. Secrets should include *current_base_url* to make swagger
 work properly.
+6. Don't forget to re-invoke *rails swagger:docs* after documentation-sensitive data is changed.
 
 ## Possible improvements: ##
 1. Implement multiple-token auth
