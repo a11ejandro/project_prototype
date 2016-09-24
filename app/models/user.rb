@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 6}, if: -> { new_record? || changes['password'] }
 
   scope :order_by, ->(field_name = 'id', sort_order = 'asc') do
-    if USER_ORDERABLE_FIELDS.include?(field_name) && sort_order.downcase.in?(%w(asc, desc))
+    if USER_ORDERABLE_FIELDS.include?(field_name) && sort_order.downcase.in?(%w(asc desc))
       order(field_name => sort_order)
     else
       all

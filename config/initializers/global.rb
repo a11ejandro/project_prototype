@@ -4,7 +4,7 @@ ADMIN = 'admin'
 QA = 'QA'
 
 # Whitelist of orderable fields
-USER_ORDERABLE_FIELDS = %w(id first_name last_name email)
+USER_ORDERABLE_FIELDS = %w(id first_name last_name email created_at)
 
 # Error messages declaration, used to prevent differences between API documentation
 # and real messages returened in Object instance and generalize error messages output altogether
