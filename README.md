@@ -1,6 +1,9 @@
 # Project Prototype #
 
 This is a state of development, that is common for majority of RoR backend APIs.
+Also, see admin panel client at https://github.com/a11ejandro/project_prototype_admin_ng2
+
+Special thanks to [Plotist](https://github.com/Plotist) for partial code-base contributions.
 
 **It has the following suggestions about project technologies:**
 
@@ -14,7 +17,7 @@ This is a state of development, that is common for majority of RoR backend APIs.
 * Basic filtering is implemented via scoped_search
 * Pagination is implemented using will_paginate
 * Attachment uploading is implemented via Carrierwave.
-]
+
 **The following features are pre-implemented:**
 * User sign in/sign up/reset password
 * Admin sign in/sign up/user management
