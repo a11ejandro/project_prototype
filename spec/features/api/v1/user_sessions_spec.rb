@@ -9,20 +9,20 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
       get_token
 
       expect(json['status']).to be 200
-      expect(@rest_token).to be_present
+      expect(@auth_token).to be_present
   end
 
-  it 'should change token on logout with valid rest token' do
+  it 'should change token on logout with valid auth token' do
     @user = FactoryGirl.create(:user)
     get_token(@user)
-    post 'sign_out', params: { rest_token: @rest_token }
+    post 'sign_out', params: { auth_token: @auth_token }
     expect(json['status']).to be 200
-    expect(@user.rest_token).to_not eql @rest_token
+    expect(User.find_by_token(@auth_token)).to be_nil
   end
 
   it 'should register with valid credentials' do
     last_user = User.last
-    post 'sign_up', params: {email: 'valid@email.com', password: 'password'}
+    post 'sign_up', params: {email: 'valid@email.com', password: 'password', platform: 'web'}
     expect(json['status']).to be 200
 
     new_user = User.last

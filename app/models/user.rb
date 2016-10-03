@@ -4,6 +4,8 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
+  has_many :devices
+
   validates :email, presence: true
   validates :role, inclusion: [ADMIN, REGULAR_USER, QA]
   validates_uniqueness_of :email
@@ -18,16 +20,15 @@ class User < ApplicationRecord
     end
   end
 
+  def self.find_by_token(token, role = REGULAR_USER)
+    self.where(role: role).joins(:devices).where('devices.auth_token = ?', token).first
+  end
+
   def admin?
     role == ADMIN
   end
 
   def qa?
     role == QA
-  end
-
-  def update_rest_token
-    self.rest_token = SecureRandom.uuid
-    self.save
   end
 end

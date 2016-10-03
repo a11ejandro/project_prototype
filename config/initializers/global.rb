@@ -2,6 +2,9 @@
 REGULAR_USER = 'user'
 ADMIN = 'admin'
 QA = 'qa'
+DEVICE_ANDROID = 'android'
+DEVICE_IOS = 'ios'
+DEVICE_WEB = 'web'
 
 # Whitelist of orderable fields
 USER_ORDERABLE_FIELDS = %w(id first_name last_name email role created_at)
