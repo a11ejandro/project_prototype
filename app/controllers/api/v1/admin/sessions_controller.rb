@@ -14,6 +14,7 @@ class Api::V1::Admin::SessionsController < Api::V1::Admin::BaseController
   end
 
   def sign_out
+    # Admin has only one web session
     @current_device.destroy
     render_success(200, {admin_logged_out: true})
   end
@@ -33,7 +34,7 @@ class Api::V1::Admin::SessionsController < Api::V1::Admin::BaseController
       case
         when @current_device.errors.messages.include?(:token)
           render_fail(113, "Token can't be blank")
-        when device.errors.messages.include?(:platform)
+        when @current_device.errors.messages.include?(:platform)
           render_fail(114, "Platform can't be blank")
         else
           render_fail(500, BASE_ERRORS[:internal_error])

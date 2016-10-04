@@ -37,6 +37,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
   end
 
   def sign_out
+    # User can have multiple web sessions
     @current_device.try(:destroy) unless @current_device.is_web?
     render_success(200, {user_logged_out: true})
   end
@@ -56,7 +57,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
       case
         when @current_device.errors.messages.include?(:token)
           render_fail(113, "Token can't be blank")
-        when device.errors.messages.include?(:platform)
+        when @current_device.errors.messages.include?(:platform)
           render_fail(114, "Platform can't be blank")
         else
           render_fail(500, BASE_ERRORS[:internal_error])
