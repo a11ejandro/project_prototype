@@ -2,10 +2,11 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   before do
     request.accept = 'application/json'
     @user = FactoryGirl.create(:user)
+    @device = FactoryGirl.create(:device, user: @user)
   end
 
   it 'should update with valid token and password' do
-    put :update, params: {id: @user.id, rest_token: @user.rest_token, first_name: 'New Firstname', last_name: 'New Lastname',
+    put :update, params: {id: @user.id, auth_token: @device.auth_token, first_name: 'New Firstname', last_name: 'New Lastname',
                             role: ADMIN, email: 'test_user@example.com', password: 'password'}
     @user.reload
 
@@ -18,7 +19,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   end
 
   it 'should not update with wrong token' do
-    put :update, params: {id: @user.id, rest_token: '', first_name: 'New Firstname', last_name: 'New Lastname',
+    put :update, params: {id: @user.id, auth_token: 'wrong-token', first_name: 'New Firstname', last_name: 'New Lastname',
                             email: 'test_user@example.com', password: 'password'}
     
     expect(json['status']).to eq 401
@@ -29,7 +30,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   end
 
   it 'should not update with wrong password' do
-    put :update, params: {id: @user.id, rest_token: @user.rest_token, first_name: 'New Firstname', last_name: 'New Lastname',
+    put :update, params: {id: @user.id, auth_token: @device.auth_token, first_name: 'New Firstname', last_name: 'New Lastname',
                           email: 'test_user@example.com', password: ''}
 
     expect(json['status']).to eq 401
@@ -41,18 +42,18 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
   it 'should show any user' do
     @another_user = FactoryGirl.create(:user)
-    get 'show', params: {id: @another_user.id, rest_token: @user.rest_token}
-
+    get 'show', params: {id: @another_user.id, auth_token: @device.auth_token}
+    
     expect(json['status']).to eq 200
-    expect(json['first_name']).to eq @another_user.first_name
-    expect(json['last_name']).to eq @another_user.last_name
+    expect(json['firstName']).to eq @another_user.first_name
+    expect(json['lastName']).to eq @another_user.last_name
     expect(json['email']).to eq @another_user.email
     expect(json['role']).to eq @another_user.role
   end
 
   it 'should not show user without token' do
     @another_user = FactoryGirl.create(:user)
-    get 'show', params: {id: @another_user.id, rest_token: ''}
+    get 'show', params: {id: @another_user.id, auth_token: ''}
 
     expect(json['status']).to eq 401
     expect(json['result']).to eq BASE_ERRORS[:invalid_token]
@@ -60,7 +61,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
   it 'should update password with password confirmation' do
     old_encrypted = @user.crypted_password
-    post 'update_password', params: {rest_token: @user.rest_token, old_password: 'password', new_password: 'new_password'}
+    post 'update_password', params: {auth_token: @device.auth_token, old_password: 'password', new_password: 'new_password'}
     @user.reload
 
     expect(json['status']).to be 200

@@ -1,7 +1,7 @@
 class Api::V1::UsersController < Api::V1::BaseController
   include Api::V1::UsersDoc
 
-  before_action :authorize_rest_token, except: [:reset_password]
+  before_action :authorize_token, except: [:reset_password]
   before_action :authorize_user, only: [:update]
   before_action :check_password, only: [:update, :destroy]
   before_action :set_current_user, only: [:show]

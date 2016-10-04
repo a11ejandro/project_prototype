@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Api::V1::Admin::SessionsController, type: :controller do
   before do
     @admin = FactoryGirl.create(:user, :admin)
+    @admin_device = FactoryGirl.create(:device, user: @admin)
     @user = FactoryGirl.create(:user)
     request.accept = 'application/json'
   end
@@ -12,20 +13,20 @@ RSpec.describe Api::V1::Admin::SessionsController, type: :controller do
 
     expect(json['status']).to be 107
     expect(json['result']).to eql BASE_ERRORS[:invalid_credentials]
-    expect(json['rest_token']).to_not be_present
+    expect(json['auth_token']).to_not be_present
   end
 
   it 'should sign in with admin credentials' do
     get_token(@admin)
 
     expect(json['status']).to be 200
-    expect(@rest_token).to be_present
+    expect(@auth_token).to be_present
   end
 
-  it 'should change token on logout with valid rest token' do
+  it 'should change token on logout with valid auth token' do
     get_token(@admin)
-    post 'sign_out', params: {rest_token: @rest_token}
+    post 'sign_out', params: {auth_token: @auth_token}
     expect(json['status']).to be 200
-    expect(@user.rest_token).to_not eql @rest_token
+    expect(Device.find_by(auth_token: @auth_token)).to be_nil
   end
 end

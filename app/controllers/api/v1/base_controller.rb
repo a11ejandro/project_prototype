@@ -11,9 +11,10 @@ class Api::V1::BaseController < ActionController::API
     render template: 'common/success', locals: {status: status_code, result: result}
   end
 
-  def authorize_rest_token
-    token = request.headers['HTTP_REST_TOKEN'] || params[:rest_token] || request.headers['rest-token']
-    @authenticated_user = User.find_by(rest_token: token)
+  def authorize_token
+    token = request.headers['HTTP_AUTH_TOKEN'] || params[:auth_token] || request.headers['auth-token']
+    @current_device = Device.find_by(auth_token: token)
+    @authenticated_user = @current_device.try(:user)
     render_fail(401, BASE_ERRORS[:invalid_token]) unless @authenticated_user
   end
 

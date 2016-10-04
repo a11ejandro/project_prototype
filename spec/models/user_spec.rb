@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
 
   it 'should validate presence of email' do
     @user = FactoryGirl.build(:user, email: nil)
-    expect(@user.valid?).to be false
+    expect(@user).to_not be_valid
   end
 
   it 'should validate presence of password' do
@@ -25,6 +25,11 @@ RSpec.describe User, type: :model do
 
   it 'should validate length of password' do
     @user = FactoryGirl.build(:user, password: '12345')
-    expect(@user.valid?).to be false
+    expect(@user).to_not be_valid
+  end
+
+  it 'should validate inclusion of roles into roles list' do
+    @user = FactoryGirl.build(:user, role: 'PM')
+    expect(@user).to_not be_valid
   end
 end

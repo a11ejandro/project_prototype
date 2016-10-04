@@ -37,7 +37,7 @@ work properly.
 6. Don't forget to re-invoke *rails swagger:docs* after documentation-sensitive data is changed.
 
 ## Possible improvements: ##
-1. Implement multiple-token auth
+1. ~~Implement multiple-token auth~~ Done.
 2. Use Capistrano template engine without bugs
 
 Feel free to send pull request on any other reason.

@@ -14,10 +14,6 @@ FactoryGirl.define do
     password 'password'
     role REGULAR_USER
 
-    after(:create) do |user|
-      user.update_rest_token
-    end
-
     trait :admin do
       email do
         counter = 0
@@ -29,7 +25,7 @@ FactoryGirl.define do
       end
 
       first_name 'Admin'
-      last_name 'Template'
+      last_name 'Example'
       role ADMIN
     end
   end
